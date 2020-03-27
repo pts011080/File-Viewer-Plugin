@@ -44,6 +44,7 @@
         if ([filePath hasPrefix:@"http://"] || [filePath hasPrefix:@"https://"])
         {
             DocumentWebviewViewController *docWebviewViewController = [[DocumentWebviewViewController alloc] init];
+            docWebviewViewController.modalPresentationStyle = UIModalPresentationFullScreen;
             [[super viewController] presentViewController:docWebviewViewController animated:YES completion:nil];
             [docWebviewViewController loadDocumentWithUrl:filePath];
             
@@ -60,6 +61,7 @@
             BOOL pluginSuccess = NO;
             
             self.previewViewController = [[DocumentViewerViewController alloc] init];
+            self.previewViewController.modalPresentationStyle = UIModalPresentationFullScreen;
             pluginSuccess = [self.previewViewController viewFile:filePath usingViewController:[super viewController]];
             
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:pluginSuccess];
@@ -69,6 +71,7 @@
             
         } else {
             self.previewViewController = [[DocumentViewerViewController alloc] init];
+            self.previewViewController.modalPresentationStyle = UIModalPresentationFullScreen;
             [self.previewViewController openFile:fileURL usingViewController:[super viewController]];
         }
 
